@@ -142,7 +142,9 @@
         .product-info { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: left;}
         .product-title { font-size: 1rem; margin: 0 0 8px; font-weight: 600; color: var(--text-dark); }
         .product-price { color: var(--accent); font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
-        .color-options { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .controls { margin-bottom: 20px; }
+        .label { font-size: 0.75rem; font-weight: 600; color: #666; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px;}
+        .color-options { display: flex; gap: 12px; margin-bottom: 15px; }
         .color-btn {
             width: 32px; height: 32px;
             border-radius: 50%;
@@ -152,12 +154,31 @@
             position: relative;
         }
         .color-btn:hover { transform: scale(1.1); }
-        .color-btn::after {
+        .color-btn.active::after {
             content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
             border-radius: 50%; border: 2px solid var(--accent);
-            opacity: 0; transition: var(--transition); transform: scale(0.8);
+            opacity: 1; transform: scale(1);
         }
-        .color-btn.active::after { opacity: 1; transform: scale(1); }
+        select.size-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            outline: none;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23111111%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+        }
+        select.size-select:focus { border-color: var(--accent); }
         .add-btn {
             background: var(--primary);
             color: white;
@@ -187,7 +208,8 @@
         .close { float: right; font-size: 2rem; cursor: pointer; color: #999; transition: var(--transition); }
         .close:hover { color: var(--accent); transform: rotate(90deg); }
         .cart-items { border-bottom: 2px solid #f0f0f0; margin-bottom: 1.5rem; max-height: 250px; overflow-y: auto; padding-right: 10px;}
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dotted #eee; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dotted #eee; align-items: center; }
+        .cart-item-img { width: 60px; height: 60px; object-fit: contain; background: #eee; border-radius: 8px; margin-right: 15px; }
         .delete-btn { color: #ff3e3e; background: rgba(255, 62, 62, 0.1); border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; font-weight: 600; transition: var(--transition);}
         .delete-btn:hover { background: #ff3e3e; color: white; }
         .form-group { margin-bottom: 1.2rem; }
@@ -340,8 +362,15 @@
             'amarillo': '#f4d35e',
             'azul': '#1d3557'
         };
+        const colorNames = {
+            '#ffffff': 'Blanco',
+            '#222222': 'Negro',
+            '#e63946': 'Rojo',
+            '#f4d35e': 'Amarillo',
+            '#1d3557': 'Azul'
+        };
         const stampImages = [
-            '001.jpg', '002.jpg', 'image_2.png', 'image_3.png', 'image_4.png',
+            'image_0.png', 'image_1.png', 'image_2.png', 'image_3.png', 'image_4.png',
             'image_5.png', 'image_6.png', 'image_7.png', 'image_8.png', 'image_9.png',
             'image_10.png', 'image_11.png', 'image_12.png', 'image_13.png', 'image_14.png',
             'image_15.png', 'image_16.png', 'image_17.png', 'image_18.png', 'image_19.png',
@@ -362,7 +391,7 @@
             });
         }
 
-        // Cargar carrito de forma segura
+        // Carga segura del carrito
         let cart = [];
         const stored = localStorage.getItem('fatalityCart');
         if (stored) {
@@ -374,6 +403,8 @@
                         name: item.name || 'Producto',
                         stamp: item.stamp || '',
                         price: Number(item.price) || 0,
+                        color: item.color || 'Blanco',
+                        size: item.size || 'M',
                         qty: Number(item.qty) || 1
                     }));
                 }
@@ -399,7 +430,7 @@
             }
         }
 
-        const tshirtSVG = (colorHex, uniqueId) => `
+        const tshirtSVG = (colorHex) => `
             <svg viewBox="0 0 512 512" class="tshirt-svg">
                 <path fill="${colorHex}" d="M378.5,64.5c-15.8,18.1-40.8,24.5-62.5,24.5c-22,0-47.8-6.8-63-25c-4-4.8-11-5.8-16.3-2.2l-96,64
                 c-6.6,4.4-8.8,13.1-5,20.3l38.6,73.1c4.2,8,14.6,10.2,21.9,4.7l13.8-10.4v238.5c0,11,9,20,20,20h224c11,0,20-9,20-20V213.5l13.8,10.4
@@ -414,25 +445,32 @@
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
-                <div class="tshirt-visual" id="visual-${product.id}">
-                    <div class="svg-container" style="width:100%; height:100%; display:flex; justify-content:center;" id="svg-container-${product.id}">
-                        ${tshirtSVG(colors[product.defaultColor], product.id)}
-                    </div>
+                <div class="tshirt-visual">
+                    <div id="svg-container-${product.id}">${tshirtSVG(colors[product.defaultColor])}</div>
                     <div class="stamp-area">
                         <img src="${product.stamp}" alt="Estampa del producto" class="stamp-img">
                     </div>
                 </div>
                 <div class="product-info">
-                    <div>
-                        <h3 class="product-title">${product.name}</h3>
-                        <div class="product-price">$${product.price.toLocaleString('es-AR')}</div>
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-price">$${product.price.toLocaleString('es-AR')}</div>
+                    <div class="controls">
+                        <span class="label">Color</span>
                         <div class="color-options">
-                            <div class="color-btn active" style="background:${colors.blanco}" onclick="changeColor(${product.id}, 'blanco', this)"></div>
-                            <div class="color-btn" style="background:${colors.negro}" onclick="changeColor(${product.id}, 'negro', this)"></div>
-                            <div class="color-btn" style="background:${colors.rojo}" onclick="changeColor(${product.id}, 'rojo', this)"></div>
-                            <div class="color-btn" style="background:${colors.amarillo}" onclick="changeColor(${product.id}, 'amarillo', this)"></div>
-                            <div class="color-btn" style="background:${colors.azul}" onclick="changeColor(${product.id}, 'azul', this)"></div>
+                            <div class="color-btn active" style="background:${colors.blanco}" data-color="blanco" onclick="selectColor(${product.id}, 'blanco', '${colors.blanco}', this)"></div>
+                            <div class="color-btn" style="background:${colors.negro}" data-color="negro" onclick="selectColor(${product.id}, 'negro', '${colors.negro}', this)"></div>
+                            <div class="color-btn" style="background:${colors.rojo}" data-color="rojo" onclick="selectColor(${product.id}, 'rojo', '${colors.rojo}', this)"></div>
+                            <div class="color-btn" style="background:${colors.amarillo}" data-color="amarillo" onclick="selectColor(${product.id}, 'amarillo', '${colors.amarillo}', this)"></div>
+                            <div class="color-btn" style="background:${colors.azul}" data-color="azul" onclick="selectColor(${product.id}, 'azul', '${colors.azul}', this)"></div>
                         </div>
+                        <span class="label">Talle</span>
+                        <select class="size-select" id="size-${product.id}">
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
                     </div>
                     <button class="add-btn" onclick="addToCart(${product.id})">AGREGAR AL CARRITO</button>
                 </div>
@@ -440,27 +478,34 @@
             grid.appendChild(card);
         });
 
-        function changeColor(prodId, colorName, btnElement) {
-            const container = document.getElementById(`svg-container-${prodId}`);
-            container.innerHTML = tshirtSVG(colors[colorName], prodId);
-            const parent = btnElement.parentElement;
-            const buttons = parent.getElementsByClassName('color-btn');
-            Array.from(buttons).forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
+        function selectColor(prodId, colorKey, colorHex, btn) {
+            document.getElementById(`svg-container-${prodId}`).innerHTML = tshirtSVG(colorHex);
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         }
 
         function addToCart(prodId) {
             const product = products.find(p => p.id === prodId);
             if (!product) return;
-            const existingItem = cart.find(item => item.id === prodId);
+
+            const selectedColorBtn = document.querySelector(`#products-grid .product-card:nth-child(${prodId}) .color-btn.active`);
+            const colorKey = selectedColorBtn ? selectedColorBtn.dataset.color : 'blanco';
+            const colorName = colorNames[colors[colorKey]] || 'Blanco';
+
+            const size = document.getElementById(`size-${prodId}`).value;
+
+            const existingItem = cart.find(item => item.id === prodId && item.color === colorName && item.size === size);
             if (existingItem) {
                 existingItem.qty += 1;
             } else {
                 cart.push({
-                    id: product.id,
+                    id: prodId,
                     name: product.name,
                     stamp: product.stamp,
                     price: product.price,
+                    color: colorName,
+                    size: size,
                     qty: 1
                 });
             }
@@ -496,14 +541,14 @@
 
                 html += `
                     <div class="cart-item">
-                        <img src="${item.stamp}" alt="Estampa" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px; border-radius: 5px; background: #eee;">
-                        <div style="flex-grow:1">
+                        <img class="cart-item-img" src="${item.stamp}">
+                        <div style="flex:1;">
                             <strong>${item.name}</strong><br>
-                            <small style="color:#666">Cantidad: ${qty}</small>
+                            <small>Color: ${item.color} | Talle: ${item.size} | Cantidad: ${qty}</small>
                         </div>
-                        <div style="text-align:right; min-width: 100px;">
-                            <div style="font-weight:bold;">$${subtotal.toLocaleString('es-AR')}</div>
-                            <button onclick="removeFromCart(${index})" class="delete-btn">Eliminar</button>
+                        <div style="text-align:right;">
+                            <strong>$${subtotal.toLocaleString('es-AR')}</strong><br>
+                            <button class="delete-btn" onclick="removeFromCart(${index})">Eliminar</button>
                         </div>
                     </div>
                 `;
@@ -544,7 +589,11 @@
             cart.forEach(item => {
                 const subtotal = (item.price || 0) * (item.qty || 1);
                 total += subtotal;
-                orderText += `🔥 ${item.name} x${item.qty || 1} = $${subtotal.toLocaleString('es-AR')}%0A`;
+                orderText += `🔥 *${item.name}*%0A`;
+                orderText += `   🎨 Color: ${item.color}%0A`;
+                orderText += `   📏 Talle: ${item.size}%0A`;
+                orderText += `   🔢 Cantidad: ${item.qty || 1}%0A`;
+                orderText += `   💰 Subtotal: $${subtotal.toLocaleString('es-AR')}%0A%0A`;
             });
             orderText += `%0A💰 *TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
             orderText += "📦 *DATOS DE ENVÍO*%0A";
@@ -567,5 +616,6 @@
 </body>
 </html>
 "commit"
+
 
 
