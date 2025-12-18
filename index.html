@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FATALITY.CO | Streetwear Minimal</title>
+    <title>FATALITY | Streetwear Minimal</title>
+    <meta name="description" content="FATALITY: prendas diseñadas para durar, inspiradas en el movimiento Nomad. Streetwear minimal con actitud.">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES Y RESET --- */
         :root {
-            --primary: #111111; /* Negro casi puro */
-            --accent: #ff3e3e;   /* Rojo intenso moderno */
+            --primary: #111111;
+            --accent: #ff3e3e;
             --text-dark: #222222;
             --text-light: #f5f5f5;
-            --glass-bg: rgba(255, 255, 255, 0.85); /* Fondo efecto vidrio claro */
+            --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: 1px solid rgba(255, 255, 255, 0.3);
             --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
             --shadow-lg: 0 20px 25px rgba(0,0,0,0.15);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animaciones suaves */
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; padding: 0; 
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0; padding: 0;
             color: var(--text-dark);
             overflow-x: hidden;
             background-color: #f0f0f0;
         }
-
         /* --- PARALLAX BACKGROUND --- */
         body::before {
             content: '';
@@ -41,51 +40,55 @@
             background-attachment: fixed;
             will-change: transform;
         }
-
         /* --- HEADER GLASSMORPHISM --- */
-        header { 
+        header {
             background: rgba(17, 17, 17, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: var(--text-light);
             padding: 1rem 5%;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
-        .logo span { color: var(--accent); }
-        
-        .cart-icon { cursor: pointer; position: relative; font-size: 1.4rem; transition: var(--transition); }
-        .cart-icon:hover { transform: scale(1.1); color: var(--accent); }
-        .cart-count { position: absolute; top: -5px; right: -8px; background: var(--accent); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; font-weight: 600; border: 2px solid var(--primary); }
-
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--text-light); }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .music-toggle, .cart-icon {
+            cursor: pointer;
+            position: relative;
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+        .music-toggle:hover, .cart-icon:hover { transform: scale(1.1); color: var(--accent); }
+        .cart-count { 
+            position: absolute; top: -5px; right: -8px; background: var(--accent); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; font-weight: 600; }
         /* --- LAYOUT PRINCIPAL --- */
-        .main-content { 
+        .main-content {
             position: relative;
             z-index: 1;
             padding: 4rem 0;
         }
-        
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .gallery-title { 
-            text-align: center; color: var(--text-light); 
-            font-size: 2.5rem; font-weight: 800; 
+        .gallery-title {
+            text-align: center; color: var(--text-light);
+            font-size: 2.5rem; font-weight: 800;
             margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2.5rem;
         }
-
-        /* --- TARJETA DE PRODUCTO MODERNA --- */
+        /* --- TARJETA DE PRODUCTO --- */
         .product-card {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
@@ -98,60 +101,50 @@
             display: flex;
             flex-direction: column;
         }
-
-        .product-card:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            box-shadow: var(--shadow-lg); 
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--shadow-lg);
         }
-
         .tshirt-visual {
             position: relative;
-            height: 350px; /* Altura ajustada para mejor visualización */
+            height: 420px;
             background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            padding: 20px 0;
+            padding: 30px 0;
         }
-        
         .tshirt-svg {
-            width: 85%;
+            width: 92%;
             height: auto;
             display: block;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 12px 20px rgba(0,0,0,0.25));
             transition: var(--transition);
         }
-        .product-card:hover .tshirt-svg { transform: scale(1.05); }
-
-        /* ÁREA DE LA ESTAMPA ACTUALIZADA PARA CENTRADO PERFECTO */
+        .product-card:hover .tshirt-svg { transform: scale(1.08); }
         .stamp-area {
             position: absolute;
-            top: 50%; left: 50%; /* Centrado absoluto */
-            transform: translate(-50%, -50%); /* Ajuste fino del centrado */
-            width: 40%; /* Tamaño de la estampa relativo a la remera */
-            height: auto; aspect-ratio: 1/1;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -48%);
+            width: 55%;
+            max-width: 260px;
+            aspect-ratio: 1/1;
             display: flex; justify-content: center; align-items: center;
             z-index: 10; pointer-events: none;
-            margin-top: -5%; /* Pequeño ajuste visual hacia arriba para que quede en el pecho */
         }
-        .stamp-img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
-            filter: contrast(1.1); /* Un pequeño realce de contraste */
+        .stamp-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: brightness(1) contrast(1.15) drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
-
-        .product-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: left;}
-        .product-title { font-size: 1rem; margin: 0 0 5px; font-weight: 600; color: var(--text-dark); }
-        .product-price { color: var(--accent); font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; }
-
-        .controls { margin-bottom: 20px; }
-        .label { font-size: 0.75rem; font-weight: 600; color: #666; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px;}
-        
+        .product-info { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: left;}
+        .product-title { font-size: 1rem; margin: 0 0 8px; font-weight: 600; color: var(--text-dark); }
+        .product-price { color: var(--accent); font-size: 1.35rem; font-weight: 800; margin-bottom: 20px; }
         .color-options { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
         .color-btn {
-            width: 30px; height: 30px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             border: 2px solid rgba(0,0,0,0.1);
             cursor: pointer;
@@ -165,28 +158,6 @@
             opacity: 0; transition: var(--transition); transform: scale(0.8);
         }
         .color-btn.active::after { opacity: 1; transform: scale(1); }
-        
-        select.size-select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            background: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            outline: none;
-            transition: var(--transition);
-            -webkit-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23111111%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px top 50%;
-            background-size: 12px auto;
-        }
-        select.size-select:focus { border-color: var(--accent); }
-
         .add-btn {
             background: var(--primary);
             color: white;
@@ -202,10 +173,9 @@
             background: var(--accent); z-index: -1; transition: var(--transition);
         }
         .add-btn:hover::before { width: 100%; }
-
-        /* --- CARRITO / MODAL --- */
+        /* --- CARRITO MODAL --- */
         .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
         }
         .modal-content {
@@ -213,86 +183,72 @@
             width: 90%; max-width: 500px;
             border-radius: 20px; box-shadow: var(--shadow-lg);
             max-height: 90vh; overflow-y: auto; position: relative;
-            animation: slideUp 0.4s ease forwards;
         }
-        @keyframes slideUp { from {opacity: 0; transform: translateY(50px);} to {opacity: 1; transform: translateY(0);} }
-        
         .close { float: right; font-size: 2rem; cursor: pointer; color: #999; transition: var(--transition); }
         .close:hover { color: var(--accent); transform: rotate(90deg); }
-        
-        h2, h3 { font-weight: 800; color: var(--primary); }
-        
         .cart-items { border-bottom: 2px solid #f0f0f0; margin-bottom: 1.5rem; max-height: 250px; overflow-y: auto; padding-right: 10px;}
-        .cart-items::-webkit-scrollbar { width: 6px; }
-        .cart-items::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-        
         .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dotted #eee; }
         .delete-btn { color: #ff3e3e; background: rgba(255, 62, 62, 0.1); border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.7rem; font-weight: 600; transition: var(--transition);}
         .delete-btn:hover { background: #ff3e3e; color: white; }
-
         .form-group { margin-bottom: 1.2rem; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; color: #555; }
-        .form-group input { 
-            width: 100%; padding: 14px; 
-            border: 2px solid #eee; border-radius: 8px; 
+        .form-group input, .form-group select {
+            width: 100%; padding: 14px;
+            border: 2px solid #eee; border-radius: 8px;
             font-family: 'Montserrat', sans-serif; transition: var(--transition); outline: none;
         }
-        .form-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 62, 62, 0.1); }
-        
+        .form-group input:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(255, 62, 62, 0.1); }
         .checkout-btn {
             background: #25D366; color: white; width: 100%; padding: 18px;
             border: none; border-radius: 10px;
-            font-size: 1.1rem; font-weight: 800; letter-spacing: 1px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
             cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px;
             transition: var(--transition); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            text-transform: uppercase;
         }
         .checkout-btn:hover { background: #128C7E; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
-
-        /* --- BOTÓN FLOTANTE WHATSAPP --- */
-        .float-wa {
-            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
-            background: linear-gradient(45deg, #25d366, #128C7E);
-            color: #FFF; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 100;
-            transition: var(--transition);
+        .payment-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: #333;
         }
-        .float-wa:hover { transform: scale(1.1) rotate(10deg); }
-
-        /* --- FOOTER --- */
         footer { background: var(--primary); color: rgba(255,255,255,0.6); text-align: center; padding: 3rem 1rem; margin-top: 0; position: relative; z-index: 2;}
         footer p { font-size: 0.9rem; font-weight: 600; }
-
-        @media (max-width: 768px) {
-            body::before { background-attachment: scroll; }
-            .gallery-title { font-size: 1.8rem; }
-            .modal-content { width: 95%; padding: 1.5rem; margin: 2vh auto; }
-        }
     </style>
 </head>
 <body>
+    <!-- AUDIO BACKGROUND -->
+    <audio id="bg-music" loop>
+        <source src="Nocturna en Buenos Aires.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
 
     <header>
-        <div class="logo">FATALITY<span>.CO</span></div>
-        <div class="cart-icon" onclick="openCart()">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            <span id="cart-count" class="cart-count">0</span>
+        <div class="logo">FATALITY</div>
+        <div class="header-right">
+            <div class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="Activar/Desactivar música">
+                🔊
+            </div>
+            <div class="cart-icon" onclick="openCart()">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
         </div>
     </header>
-
     <div class="main-content">
         <div class="container">
             <h2 class="gallery-title">Colección Nomad // 100 Modelos</h2>
-            <div id="products-grid" class="products-grid">
-                </div>
+            <div id="products-grid" class="products-grid"></div>
         </div>
     </div>
-
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCart()">&times;</span>
             <h2>Tu Pedido</h2>
-            
+           
             <div id="cart-items" class="cart-items">
                 <p style="text-align:center; color:#999;">El carrito está vacío</p>
             </div>
@@ -300,54 +256,82 @@
                 <span>Total Estimado:</span>
                 <span style="font-weight: 800; color: var(--primary);">$<span id="cart-total">0</span></span>
             </div>
-
             <hr style="border: none; border-top: 1px solid #eee; margin: 1.5rem 0;">
             <h3>Finalizar Compra</h3>
             <p style="font-size: 0.85rem; color: #666; margin-bottom: 1.5rem;">Completa tus datos para enviar el pedido por WhatsApp.</p>
             <form id="checkout-form" onsubmit="sendToWhatsApp(event)">
                 <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="name" required placeholder="">
+                    <label>Nombre Completo *</label>
+                    <input type="text" id="name" required>
                 </div>
-                 <div class="form-group" style="display: flex; gap: 15px;">
-                    <div style="flex:1">
-                        <label>Código Postal</label>
-                        <input type="text" id="zip" required>
-                    </div>
-                    <div style="flex:1">
-                        <label>Provincia</label>
-                         <input type="text" id="province" required>
-                    </div>
+                <div class="form-group">
+                    <label>DNI *</label>
+                    <input type="text" id="dni" required>
                 </div>
-                <div class="form-group" style="display: flex; gap: 15px;">
-                    <div style="flex:1">
-                        <label>Ciudad</label>
-                        <input type="text" id="city" required>
-                    </div>
-                    <div style="flex:1">
-                        <label>Barrio/Dirección</label>
-                        <input type="text" id="hood" required>
-                    </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required>
                 </div>
-
+                <div class="form-group">
+                    <label>Celular *</label>
+                    <input type="text" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Barrio</label>
+                    <input type="text" id="neighborhood">
+                </div>
+                <div class="form-group">
+                    <label>Ciudad *</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label>Provincia *</label>
+                    <select id="province" required>
+                        <option value="" disabled selected>Seleccionar provincia</option>
+                        <option value="CABA">CABA</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Catamarca">Catamarca</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Entre Ríos">Entre Ríos</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="Jujuy">Jujuy</option>
+                        <option value="La Pampa">La Pampa</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquén">Neuquén</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Salta">Salta</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tierra del Fuego">Tierra del Fuego</option>
+                        <option value="Tucumán">Tucumán</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Código Postal *</label>
+                    <input type="text" id="postalCode" required>
+                </div>
+                <p class="payment-note">
+                    💸 Podés abonar por transferencia al Alias: <strong>NEXOART</strong>
+                </p>
                 <button type="submit" class="checkout-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     ENVIAR PEDIDO
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                 </button>
             </form>
         </div>
     </div>
-
-    <a href="https://api.whatsapp.com/send?phone=+543489686939" class="float-wa" target="_blank">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    </a>
-
     <footer>
-        <p>© 2025 FATALITY.CO | Diseñado para durar.</p>
+        <p>© 2025 FATALITY | Diseñado para durar.</p>
     </footer>
-
     <script>
-        // --- CONFIGURACIÓN DE PRODUCTOS ---
         const products = [];
         const colors = {
             'blanco': '#ffffff',
@@ -356,69 +340,71 @@
             'amarillo': '#f4d35e',
             'azul': '#1d3557'
         };
-
-        // --- ARRAY CON TUS ESTAMPAS REALES (Incluyendo las nuevas) ---
-        // Asegúrate de que los archivos de imagen estén en la misma carpeta que este archivo HTML
         const stampImages = [
-            'image_0.png', // Carpa Koi
-            'image_1.png', // Kanji Blanco
-            'image_2.png', // Graffiti Neon
-            'image_3.png', // Pistolas Neon
-            'image_4.png', // Samurai
-            'image_5.png', // Manga Cyberpunk
-            'image_6.png', // Calle Cyberpunk
-            'image_7.png', // Logo Cyberpunk
-            'image_8.png', // Calavera Neon
-            'image_9.png', // Carpa Koi (Repetida)
-            'image_10.png', // Diseño Cyberpunk Circular
-            'image_11.png', // Rostro Cibernético Lineal
-            'image_12.png', // Personaje con Gafas
-            'image_13.png', // Kanji Abstracto
-            'image_14.png', // Diseño Cyberpunk Circular (Repetido)
-            'image_15.png', // Rostro Femenino Neon
-            'image_16.png', // Rostro Oscuro con Ojos Azules
-            'image_17.png', // Kanji Vertical
-            'image_18.png', // Samurai Moderno Neon
-            'image_19.png',  // Panel de Manga B&N
-            'image_20.png', // Ciudad Cyberpunk Naranja
-            'image_21.png', // Chica Anime Pelo Azul
-            'image_22.png', // Calavera Realista
-            'image_23.png', // Chica Rockabilly y Coche
-            'image_24.png', // Coche Deportivo Neon Trasero
-            'image_25.png', // Chica Manga Fusion B&N
-            'image_26.png', // Túnel de Luz Neon
-            'image_27.png', // Kanji Neon "Tokyo"
-            'image_28.png'  // Robot Cyberpunk Verde
+            'image_0.png', 'image_1.png', 'image_2.png', 'image_3.png', 'image_4.png',
+            'image_5.png', 'image_6.png', 'image_7.png', 'image_8.png', 'image_9.png',
+            'image_10.png', 'image_11.png', 'image_12.png', 'image_13.png', 'image_14.png',
+            'image_15.png', 'image_16.png', 'image_17.png', 'image_18.png', 'image_19.png',
+            'image_20.png', 'image_21.png', 'image_22.png', 'image_23.png', 'image_24.png',
+            'image_25.png', 'image_26.png', 'image_27.png', 'image_28.png', 'image_29.png',
+            'image_30.png', 'image_31.png', 'image_32.png', 'image_33.png', 'image_34.png',
+            'image_35.png', 'image_36.png', 'image_37.png', 'image_38.png', 'image_39.png',
+            'image_40.png'
         ];
-
-        // Generación de los 100 productos
         for (let i = 0; i < 100; i++) {
-            // Usamos el operador módulo (%) para ciclar a través de todas las imágenes
             const stampIndex = i % stampImages.length;
-            
             products.push({
                 id: i + 1,
                 name: `Remera Modelo Fatality #${i + 1}`,
-                price: 15000 + (Math.floor(Math.random() * 5) * 1000), 
-                // Asignamos la estampa correspondiente del array
+                price: 15000 + (Math.floor(Math.random() * 5) * 1000),
                 stamp: stampImages[stampIndex],
-                defaultColor: 'blanco' // Color inicial
+                defaultColor: 'blanco'
             });
         }
 
+        // Cargar carrito de forma segura
         let cart = [];
+        const stored = localStorage.getItem('fatalityCart');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) {
+                    cart = parsed.map(item => ({
+                        id: item.id || 0,
+                        name: item.name || 'Producto',
+                        stamp: item.stamp || '',
+                        price: Number(item.price) || 0,
+                        qty: Number(item.qty) || 1
+                    }));
+                }
+            } catch (e) {
+                cart = [];
+            }
+        }
 
-        // --- RENDERIZADO DE PRODUCTOS ---
         const grid = document.getElementById('products-grid');
+        const audio = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
 
-        // SVG DE LA REMERA (Base que cambia de color)
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicToggle.innerHTML = '🔊';
+            } else {
+                audio.pause();
+                musicToggle.innerHTML = '🔇';
+            }
+        }
+
         const tshirtSVG = (colorHex, uniqueId) => `
             <svg viewBox="0 0 512 512" class="tshirt-svg">
-                 <filter id="shadow-${uniqueId}"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.3"/></filter>
                 <path fill="${colorHex}" d="M378.5,64.5c-15.8,18.1-40.8,24.5-62.5,24.5c-22,0-47.8-6.8-63-25c-4-4.8-11-5.8-16.3-2.2l-96,64
                 c-6.6,4.4-8.8,13.1-5,20.3l38.6,73.1c4.2,8,14.6,10.2,21.9,4.7l13.8-10.4v238.5c0,11,9,20,20,20h224c11,0,20-9,20-20V213.5l13.8,10.4
                 c7.3,5.5,17.7,3.3,21.9-4.7l38.6-73.1c3.8-7.2,1.6-15.9-5-20.3l-96-64C417.5,58.3,407.5,55.8,378.5,64.5z" />
-                <path fill="#000" opacity="0.15" d="M378.5,64.5c-15.8,18.1-40.8,24.5-62.5,24.5c-22,0-47.8-6.8-63-25c-4-4.8-11-5.8-16.3-2.2l-96,64
+                <path fill="#000" opacity="0.18" d="M378.5,64.5c-15.8,18.1-40.8,24.5-62.5,24.5c-22,0-47.8-6.8-63-25c-4-4.8-11-5.8-16.3-2.2l-96,64
                 c-6.6,4.4-8.8,13.1-5,20.3l38.6,73.1c4.2,8,14.6,10.2,21.9,4.7l13.8-10.4v238.5c0,11,9,20,20,20h224c11,0,20-9,20-20V213.5l13.8,10.4
                 c7.3,5.5,17.7,3.3,21.9-4.7l38.6-73.1c3.8-7.2,1.6-15.9-5-20.3l-96-64C417.5,58.3,407.5,55.8,378.5,64.5z" style="mix-blend-mode: multiply;"/>
             </svg>
@@ -427,7 +413,6 @@
         products.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
-            
             card.innerHTML = `
                 <div class="tshirt-visual" id="visual-${product.id}">
                     <div class="svg-container" style="width:100%; height:100%; display:flex; justify-content:center;" id="svg-container-${product.id}">
@@ -441,25 +426,12 @@
                     <div>
                         <h3 class="product-title">${product.name}</h3>
                         <div class="product-price">$${product.price.toLocaleString('es-AR')}</div>
-                        
-                        <div class="controls">
-                            <span class="label">Color / Talle</span>
-                            <div style="display:flex; gap: 15px; align-items: center;">
-                                <div class="color-options" style="margin-bottom:0;">
-                                    <div class="color-btn active" style="background:${colors.blanco}" onclick="changeColor(${product.id}, 'blanco', this)"></div>
-                                    <div class="color-btn" style="background:${colors.negro}" onclick="changeColor(${product.id}, 'negro', this)"></div>
-                                    <div class="color-btn" style="background:${colors.rojo}" onclick="changeColor(${product.id}, 'rojo', this)"></div>
-                                    <div class="color-btn" style="background:${colors.amarillo}" onclick="changeColor(${product.id}, 'amarillo', this)"></div>
-                                    <div class="color-btn" style="background:${colors.azul}" onclick="changeColor(${product.id}, 'azul', this)"></div>
-                                </div>
-                                <select id="size-${product.id}" class="size-select" style="width: auto; flex-grow: 1;">
-                                    <option value="S">S</option>
-                                    <option value="M" selected>M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
-                                    <option value="XXL">XXL</option>
-                                </select>
-                            </div>
+                        <div class="color-options">
+                            <div class="color-btn active" style="background:${colors.blanco}" onclick="changeColor(${product.id}, 'blanco', this)"></div>
+                            <div class="color-btn" style="background:${colors.negro}" onclick="changeColor(${product.id}, 'negro', this)"></div>
+                            <div class="color-btn" style="background:${colors.rojo}" onclick="changeColor(${product.id}, 'rojo', this)"></div>
+                            <div class="color-btn" style="background:${colors.amarillo}" onclick="changeColor(${product.id}, 'amarillo', this)"></div>
+                            <div class="color-btn" style="background:${colors.azul}" onclick="changeColor(${product.id}, 'azul', this)"></div>
                         </div>
                     </div>
                     <button class="add-btn" onclick="addToCart(${product.id})">AGREGAR AL CARRITO</button>
@@ -468,16 +440,9 @@
             grid.appendChild(card);
         });
 
-        // --- FUNCIONES LÓGICAS (Sin cambios) ---
-
         function changeColor(prodId, colorName, btnElement) {
             const container = document.getElementById(`svg-container-${prodId}`);
-            // Al cambiar el color, solo actualizamos el SVG de fondo, la estampa no se toca
             container.innerHTML = tshirtSVG(colors[colorName], prodId);
-            
-            const visual = document.getElementById(`visual-${prodId}`);
-            visual.setAttribute('data-selected-color', colorName);
-
             const parent = btnElement.parentElement;
             const buttons = parent.getElementsByClassName('color-btn');
             Array.from(buttons).forEach(b => b.classList.remove('active'));
@@ -486,27 +451,20 @@
 
         function addToCart(prodId) {
             const product = products.find(p => p.id === prodId);
-            const size = document.getElementById(`size-${prodId}`).value;
-            const visual = document.getElementById(`visual-${prodId}`);
-            const color = visual.getAttribute('data-selected-color') || product.defaultColor;
-
-            const existingItem = cart.find(item => item.id === prodId && item.size === size && item.color === color);
-
-            if(existingItem) {
-                existingItem.qty++;
+            if (!product) return;
+            const existingItem = cart.find(item => item.id === prodId);
+            if (existingItem) {
+                existingItem.qty += 1;
             } else {
                 cart.push({
-                    id: prodId,
+                    id: product.id,
                     name: product.name,
-                    // Guardamos la referencia a la estampa en el carrito también
                     stamp: product.stamp,
                     price: product.price,
-                    size: size,
-                    color: color,
                     qty: 1
                 });
             }
-            
+            localStorage.setItem('fatalityCart', JSON.stringify(cart));
             updateCartUI();
             const cartIcon = document.querySelector('.cart-icon');
             cartIcon.style.transform = 'scale(1.3)';
@@ -514,94 +472,98 @@
         }
 
         function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-            
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalEl = document.getElementById('cart-total');
-            
+            const countEl = document.getElementById('cart-count');
+            const itemsContainer = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+            countEl.textContent = totalItems;
+
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999;">El carrito está vacío</p>';
-                cartTotalEl.innerText = '0';
+                itemsContainer.innerHTML = '<p style="text-align:center; color:#999;">El carrito está vacío</p>';
+                totalEl.textContent = '0';
                 return;
             }
 
             let html = '';
-            let total = 0;
+            let totalPrice = 0;
 
             cart.forEach((item, index) => {
-                const subtotal = item.price * item.qty;
-                total += subtotal;
+                const qty = item.qty || 1;
+                const price = Number(item.price) || 0;
+                const subtotal = price * qty;
+                totalPrice += subtotal;
+
                 html += `
                     <div class="cart-item">
                         <img src="${item.stamp}" alt="Estampa" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px; border-radius: 5px; background: #eee;">
                         <div style="flex-grow:1">
                             <strong>${item.name}</strong><br>
-                            <small style="color:#666">Talle: ${item.size} | Color: <span style="text-transform:capitalize">${item.color}</span></small>
+                            <small style="color:#666">Cantidad: ${qty}</small>
                         </div>
                         <div style="text-align:right; min-width: 100px;">
-                            <div style="font-weight:bold;">$${item.price.toLocaleString('es-AR')} <small>x${item.qty}</small></div>
+                            <div style="font-weight:bold;">$${subtotal.toLocaleString('es-AR')}</div>
                             <button onclick="removeFromCart(${index})" class="delete-btn">Eliminar</button>
                         </div>
                     </div>
                 `;
             });
 
-            cartItemsContainer.innerHTML = html;
-            cartTotalEl.innerText = total.toLocaleString('es-AR');
+            itemsContainer.innerHTML = html;
+            totalEl.textContent = totalPrice.toLocaleString('es-AR');
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
+            localStorage.setItem('fatalityCart', JSON.stringify(cart));
             updateCartUI();
         }
 
-        // Modal Logic
-        function openCart() { document.getElementById('cartModal').style.display = 'block'; }
-        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('cartModal')) {
-                closeCart();
-            }
+        function openCart() { 
+            updateCartUI();
+            document.getElementById('cartModal').style.display = 'block'; 
         }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
 
-        // --- ENVIAR A WHATSAPP ---
         function sendToWhatsApp(e) {
             e.preventDefault();
-
             if(cart.length === 0) {
                 alert("Agrega productos antes de enviar.");
                 return;
             }
-
-            const name = document.getElementById('name').value;
-            const zip = document.getElementById('zip').value;
-            const city = document.getElementById('city').value;
-            const hood = document.getElementById('hood').value;
-            const province = document.getElementById('province').value;
-
-            let orderText = "";
+            const required = ['name', 'dni', 'email', 'phone', 'city', 'province', 'postalCode'];
+            for (let id of required) {
+                if (!document.getElementById(id).value.trim()) {
+                    alert('Completa todos los campos obligatorios');
+                    return;
+                }
+            }
+            let orderText = "🚀 *HOLA FATALITY!!! Este es mi pedido* 🚀%0A%0A";
+            orderText += "🛒 *PRODUCTOS*%0A";
             let total = 0;
             cart.forEach(item => {
-                // Incluimos el nombre del archivo de la estampa en el pedido para referencia
-                const stampName = item.stamp.split('/').pop(); 
-                orderText += `- ${item.name} (Estampa: ${stampName}, Talle: ${item.size}, Color: ${item.color}) x${item.qty} = $${(item.price * item.qty).toLocaleString('es-AR')}%0A`;
-                total += item.price * item.qty;
+                const subtotal = (item.price || 0) * (item.qty || 1);
+                total += subtotal;
+                orderText += `🔥 ${item.name} x${item.qty || 1} = $${subtotal.toLocaleString('es-AR')}%0A`;
             });
-
-            const basePhone = "+543489686939";
-            const headerMsg = "Hola FATALITY.CO. Aqui te envío el pedido o consulta!!";
-            
-            const fullMessage = `${headerMsg}%0A%0A` +
-                                `*DETALLES DEL PEDIDO:*%0A${orderText}` +
-                                `*TOTAL ESTIMADO: $${total.toLocaleString('es-AR')}*%0A%0A` +
-                                `*DATOS DE ENVÍO:*%0A` +
-                                `Nombre: ${name}%0A` +
-                                `Dirección: ${hood}, ${city}, ${province} (CP: ${zip})`;
-
-            const finalURL = `https://api.whatsapp.com/send?phone=${basePhone}&text=${fullMessage}`;
-
+            orderText += `%0A💰 *TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
+            orderText += "📦 *DATOS DE ENVÍO*%0A";
+            orderText += `👤 ${document.getElementById('name').value}%0A`;
+            orderText += `🆔 DNI: ${document.getElementById('dni').value}%0A`;
+            orderText += `📧 ${document.getElementById('email').value}%0A`;
+            orderText += `📱 ${document.getElementById('phone').value}%0A`;
+            if (document.getElementById('neighborhood').value) orderText += `🏘️ Barrio: ${document.getElementById('neighborhood').value}%0A`;
+            orderText += `🏙️ ${document.getElementById('city').value}%0A`;
+            orderText += `🌎 ${document.getElementById('province').value}%0A`;
+            orderText += `📮 CP: ${document.getElementById('postalCode').value}%0A%0A`;
+            orderText += "💳 Transferencia a Alias: *NEXOART*%0A¡Gracias! 🖤";
+            const finalURL = `https://api.whatsapp.com/send?phone=+543489686939&text=${orderText}`;
             window.open(finalURL, '_blank');
         }
+
+        // Inicialización
+        updateCartUI();
     </script>
 </body>
 </html>
+"commit"
